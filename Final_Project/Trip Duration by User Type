@@ -1,0 +1,10 @@
+```{r plot bar graph}
+df2<- df %>%
+  group_by(usertype)%>%
+  summarise(avg_duration=mean(tripduration,na.rm=TRUE))
+ggplot(data = df2,aes(x=usertype,y=avg_duration))+
+   geom_text(aes(label = avg_duration), vjust =-0.5, colour = "black",size =3,position=position_dodge(1))+
+  geom_bar(stat='identity')+
+  labs(
+    x='User Type', y= "Avg. Trip Duration (Seconds)", title = "Trip Duration by User Type")
+```
