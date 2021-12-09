@@ -1,0 +1,17 @@
+```{r most popular bike by numebr of times}
+df5 <- df %>%
+  group_by(bikeid)%>%
+  summarise(count=sum(bikeid))%>%
+  arrange(desc(count))%>%
+  slice(1:10)
+df5$bikeid<-as.character(df5$bikeid)
+ggplot(df5,aes(x = count, y = reorder(bikeid,count)))+
+  geom_col(position = "dodge")+
+  geom_text(aes(label = count), vjust =-1, colour = "black",size =3,position=position_dodge(1))+
+  labs(
+    y = "Bike ID",
+    x = "Number of Times Bike is Used",
+    title = "Most popular bikes by number of times used"
+  )
+  
+```
